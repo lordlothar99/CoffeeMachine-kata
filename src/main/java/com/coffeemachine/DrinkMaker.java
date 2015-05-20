@@ -1,6 +1,6 @@
 package com.coffeemachine;
 
-public interface CoffeeMachine {
+public interface DrinkMaker {
 
 	void displayMessage(String message);
 

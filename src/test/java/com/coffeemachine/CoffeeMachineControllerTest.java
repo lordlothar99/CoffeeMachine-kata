@@ -23,10 +23,10 @@ import org.junit.runners.Parameterized.Parameters;
 import org.mockito.Mockito;
 
 @RunWith(Parameterized.class)
-public class CoffeeMachineTest {
+public class CoffeeMachineControllerTest {
 
 	private CoffeeMachineController coffeeMachineController;
-	private CoffeeMachine coffeeMachine;
+	private DrinkMaker drinkMaker;
 	@Parameter(value = 1)
 	public String expectedCommand;
 	@Parameter(value = 0)
@@ -34,8 +34,8 @@ public class CoffeeMachineTest {
 
 	@Before
 	public void init() {
-		coffeeMachine = Mockito.mock(CoffeeMachine.class);
-		coffeeMachineController = new CoffeeMachineController(coffeeMachine);
+		drinkMaker = Mockito.mock(DrinkMaker.class);
+		coffeeMachineController = new CoffeeMachineController(drinkMaker);
 	}
 
 	@Parameters(name = "\"{1}\" = {0}")
@@ -67,7 +67,7 @@ public class CoffeeMachineTest {
 		} else {
 			coffeeMachineController.displayMessage((String) this.order);
 		}
-		verify(coffeeMachine).sendCommand(expectedCommand);
+		verify(drinkMaker).sendCommand(expectedCommand);
 	}
 
 }

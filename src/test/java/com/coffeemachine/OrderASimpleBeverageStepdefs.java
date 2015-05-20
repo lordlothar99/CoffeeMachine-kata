@@ -13,12 +13,12 @@ import cucumber.api.java.en.When;
 public class OrderASimpleBeverageStepdefs {
 
 	private CoffeeMachineController coffeeMachineController;
-	private CoffeeMachine coffeeMachine;
+	private DrinkMaker drinkMaker;
 
 	@Before
 	public void init() {
-		coffeeMachine = Mockito.mock(CoffeeMachine.class);
-		coffeeMachineController = new CoffeeMachineController(coffeeMachine);
+		drinkMaker = Mockito.mock(DrinkMaker.class);
+		coffeeMachineController = new CoffeeMachineController(drinkMaker);
 	}
 
 	@When("^a (.*) is ordered$")
@@ -29,6 +29,6 @@ public class OrderASimpleBeverageStepdefs {
 
 	@Then("^i should send the command \"(.*)\" to the drink maker$")
 	public void i_should_send_the_expected_command(String command) throws Throwable {
-		verify(coffeeMachine).sendCommand(command);
+		verify(drinkMaker).sendCommand(command);
 	}
 }

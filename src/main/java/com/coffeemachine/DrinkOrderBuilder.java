@@ -1,12 +1,16 @@
 package com.coffeemachine;
 
+import static com.coffeemachine.Sugar.NONE;
+import static com.coffeemachine.Sugar.ONE;
+import static com.coffeemachine.Sugar.TWO;
+
 public class DrinkOrderBuilder {
 
 	private final DrinkOrder drinkOrder;
 
 	public DrinkOrderBuilder() {
 		this.drinkOrder = new DrinkOrder();
-		this.drinkOrder.setSugar(Sugar.NONE);
+		this.drinkOrder.setSugar(NONE);
 	}
 
 	public static DrinkOrderBuilder newOrder() {
@@ -23,12 +27,12 @@ public class DrinkOrderBuilder {
 	}
 
 	public DrinkOrderBuilder withOneSugar() {
-		this.drinkOrder.setSugar(Sugar.ONE);
+		this.drinkOrder.setSugar(ONE);
 		return this;
 	}
 
 	public DrinkOrderBuilder withTwoSugars() {
-		this.drinkOrder.setSugar(Sugar.TWO);
+		this.drinkOrder.setSugar(TWO);
 		return this;
 	}
 
