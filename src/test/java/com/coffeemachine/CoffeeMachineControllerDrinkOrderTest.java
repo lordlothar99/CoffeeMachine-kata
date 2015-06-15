@@ -1,6 +1,5 @@
 package com.coffeemachine;
 
-import static com.coffeemachine.DrinkOrderBuilder.newMessage;
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.CHOCOLATE;
 import static com.coffeemachine.DrinkType.COFFEE;
@@ -14,29 +13,19 @@ import static org.mockito.Mockito.verify;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.mockito.Mockito;
 
 @RunWith(Parameterized.class)
-public class CoffeeMachineControllerTest {
+public class CoffeeMachineControllerDrinkOrderTest extends AbstractCoffeeMachineTest {
 
-	private CoffeeMachineController coffeeMachineController;
-	private DrinkMaker drinkMaker;
 	@Parameter(value = 1)
 	public String expectedCommand;
 	@Parameter(value = 0)
-	public Object order;
-
-	@Before
-	public void init() {
-		drinkMaker = Mockito.mock(DrinkMaker.class);
-		coffeeMachineController = new CoffeeMachineController(drinkMaker);
-	}
+	public DrinkOrder order;
 
 	@Parameters(name = "\"{1}\" = {0}")
 	public static Collection<Object[]> getExpectedMessagesForOrders() {
@@ -45,7 +34,6 @@ public class CoffeeMachineControllerTest {
 						{ newOrder().of(TEA).withOneSugar().withCashAmount("0.4").asOrder(), "T:1:0" },
 						{ newOrder().of(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
 						{ newOrder().of(COFFEE).withTwoSugars().withCashAmount("0.6").asOrder(), "C:2:0" },
-						{ newMessage("Hello world !"), "M:Hello world !" },
 						{ newOrder().of(TEA).withOneSugar().withCashAmount("0.3").asOrder(),
 								"M:Unsufficient funds : 0.1 euros missing" },
 						{ newOrder().of(CHOCOLATE).withOneSugar().asOrder(), "M:Unsufficient funds : 0.5 euros missing" },
@@ -65,11 +53,7 @@ public class CoffeeMachineControllerTest {
 
 	@Test
 	public void should_send_command_when_received_order() {
-		if (this.order instanceof DrinkOrder) {
-			coffeeMachineController.orderDrink((DrinkOrder) this.order);
-		} else {
-			coffeeMachineController.displayMessage((String) this.order);
-		}
+		coffeeMachineController.orderDrink(this.order);
 		verify(drinkMaker).sendCommand(expectedCommand);
 	}
 

@@ -1,6 +1,6 @@
 Feature: Order a simple drink
 	In order to pilot the drink maker
-	As an orchestrator
+	As a coffee machine controller
 	I want to send a command
 	
 	Scenario Outline: Order of a simple drink

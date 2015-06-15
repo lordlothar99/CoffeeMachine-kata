@@ -14,10 +14,6 @@ public class DrinkOrderBuilder {
 		return new DrinkOrderBuilder();
 	}
 
-	public static String newMessage(String message) {
-		return message;
-	}
-
 	public DrinkOrderBuilder of(DrinkType drinkType) {
 		this.drinkOrder.setType(drinkType);
 		return this;

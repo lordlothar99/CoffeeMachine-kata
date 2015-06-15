@@ -20,7 +20,7 @@ public class OrderADrinkStepdefs {
 	@Before
 	public void init() {
 		drinkMaker = Mockito.mock(DrinkMaker.class);
-		coffeeMachineController = new CoffeeMachineController(drinkMaker);
+		coffeeMachineController = new CoffeeMachineController(drinkMaker, new ReportManagerImpl());
 	}
 
 	@When("^a (.*) with (\\d+) sugar and (\\d+.\\d+) euros is ordered$")
