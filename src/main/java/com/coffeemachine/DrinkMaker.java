@@ -2,7 +2,8 @@ package com.coffeemachine;
 
 public interface DrinkMaker {
 
+	void makeDrink(String command);
+
 	void displayMessage(String message);
 
-	void sendCommand(String command);
 }

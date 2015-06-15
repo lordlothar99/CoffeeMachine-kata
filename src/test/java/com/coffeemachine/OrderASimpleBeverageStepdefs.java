@@ -29,6 +29,6 @@ public class OrderASimpleBeverageStepdefs {
 
 	@Then("^i should send the command \"(.*)\" to the drink maker$")
 	public void i_should_send_the_expected_command(String command) throws Throwable {
-		verify(drinkMaker).sendCommand(command);
+		verify(drinkMaker).makeDrink(command);
 	}
 }

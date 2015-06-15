@@ -9,7 +9,7 @@ public class CoffeeMachineController {
 	}
 
 	public void displayMessage(String message) {
-		drinkMaker.sendCommand("M:" + message);
+		drinkMaker.makeDrink("M:" + message);
 	}
 
 	public void orderDrink(DrinkOrder drinkOrder) {
@@ -20,7 +20,7 @@ public class CoffeeMachineController {
 			StringBuilder command = new StringBuilder();
 			command.append(drinkOrder.getType().getCode());
 			command.append(drinkOrder.getSugar().getCode());
-			drinkMaker.sendCommand(command.toString());
+			drinkMaker.makeDrink(command.toString());
 		}
 	}
 
