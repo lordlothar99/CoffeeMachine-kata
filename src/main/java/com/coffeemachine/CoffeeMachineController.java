@@ -11,7 +11,7 @@ public class CoffeeMachineController {
 	public void orderDrink(DrinkOrder drinkOrder) {
 		float missingAmount = calculateMissingAmount(drinkOrder);
 		if (missingAmount > 0) {
-			this.displayMessage("Unsufficient funds : " + missingAmount + "€ missing");
+			this.displayMessage("Unsufficient funds : " + missingAmount + " euros missing");
 		} else {
 			String command = drinkOrder.getType().getCode();
 			command += getSugar(drinkOrder);

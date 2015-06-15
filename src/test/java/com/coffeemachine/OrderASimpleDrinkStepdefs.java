@@ -4,6 +4,8 @@ import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.valueOf;
 import static org.mockito.Mockito.verify;
 
+import java.math.BigDecimal;
+
 import org.mockito.Mockito;
 
 import cucumber.api.java.Before;
@@ -22,10 +24,10 @@ public class OrderASimpleDrinkStepdefs {
 	}
 
 	@When("^a (.*) with (\\d+) sugar and (\\d+.\\d+) euros is ordered$")
-	public void a_drink_is_ordered(String drinkType, int sugarQuantity, float cashAmount) {
+	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String cashAmount) {
 		DrinkOrder order = newOrder().of(valueOf(drinkType.toUpperCase()))//
 				.withSugarQuantity(sugarQuantity)//
-				.withCashAmount(valueOf(drinkType.toUpperCase()).getPrice())//
+				.withCashAmount(new BigDecimal(cashAmount))//
 				.asOrder();
 		coffeeMachineController.orderDrink(order);
 	}
