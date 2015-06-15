@@ -67,7 +67,7 @@ public class CoffeeMachineControllerTest {
 		} else {
 			coffeeMachineController.displayMessage((String) this.order);
 		}
-		verify(drinkMaker).makeDrink(expectedCommand);
+		verify(drinkMaker).sendCommand(expectedCommand);
 	}
 
 }
