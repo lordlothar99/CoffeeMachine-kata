@@ -1,8 +1,6 @@
 package com.coffeemachine;
 
-import static com.coffeemachine.Sugar.NONE;
-import static com.coffeemachine.Sugar.ONE;
-import static com.coffeemachine.Sugar.TWO;
+import java.math.BigDecimal;
 
 public class DrinkOrderBuilder {
 
@@ -10,7 +8,6 @@ public class DrinkOrderBuilder {
 
 	public DrinkOrderBuilder() {
 		this.drinkOrder = new DrinkOrder();
-		this.drinkOrder.setSugar(NONE);
 	}
 
 	public static DrinkOrderBuilder newOrder() {
@@ -27,21 +24,28 @@ public class DrinkOrderBuilder {
 	}
 
 	public DrinkOrderBuilder withOneSugar() {
-		this.drinkOrder.setSugar(ONE);
-		return this;
+		return withSugarQuantity(1);
 	}
 
 	public DrinkOrderBuilder withTwoSugars() {
-		this.drinkOrder.setSugar(TWO);
-		return this;
+		return withSugarQuantity(2);
 	}
 
-	public DrinkOrderBuilder withCashAmount(float cashAmount) {
+	public DrinkOrderBuilder withCashAmount(String cashAmount) {
+		return withCashAmount(new BigDecimal(cashAmount));
+	}
+
+	public DrinkOrderBuilder withCashAmount(BigDecimal cashAmount) {
 		this.drinkOrder.setCashAmount(cashAmount);
 		return this;
 	}
 
 	public DrinkOrder asOrder() {
 		return this.drinkOrder;
+	}
+
+	public DrinkOrderBuilder withSugarQuantity(int sugarQuantity) {
+		this.drinkOrder.setSugarQuantity(sugarQuantity);
+		return this;
 	}
 }

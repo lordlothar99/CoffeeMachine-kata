@@ -2,19 +2,21 @@ package com.coffeemachine;
 
 import static org.apache.commons.lang.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
+import java.math.BigDecimal;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class DrinkOrder {
 
 	private DrinkType type;
-	private Sugar sugar;
-	private float cashAmount;
+	private int sugarQuantity;
+	private BigDecimal cashAmount = BigDecimal.ZERO;
 
-	public void setCashAmount(float cashAmount) {
+	public void setCashAmount(BigDecimal cashAmount) {
 		this.cashAmount = cashAmount;
 	}
 
-	public float getCashAmount() {
+	public BigDecimal getCashAmount() {
 		return cashAmount;
 	}
 
@@ -26,19 +28,19 @@ public class DrinkOrder {
 		return type;
 	}
 
-	public Sugar getSugar() {
-		return sugar;
+	public int getSugarQuantity() {
+		return sugarQuantity;
 	}
 
-	public void setSugar(Sugar sugar) {
-		this.sugar = sugar;
+	public void setSugarQuantity(int sugarQuantity) {
+		this.sugarQuantity = sugarQuantity;
 	}
 
 	@Override
 	public String toString() {
 		ToStringBuilder builder = new ToStringBuilder(this, SHORT_PREFIX_STYLE);
 		builder.append("type", type);
-		builder.append("sugar", sugar);
+		builder.append("sugarQuantity", sugarQuantity);
 		builder.append("cashAmount", cashAmount);
 		return builder.toString();
 	}

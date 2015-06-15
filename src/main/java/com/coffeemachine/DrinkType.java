@@ -1,19 +1,21 @@
 package com.coffeemachine;
 
+import java.math.BigDecimal;
+
 public enum DrinkType {
 
-	TEA("T:", 0.4f), //
-	CHOCOLATE("H:", 0.5f), //
-	COFFEE("C:", 0.6f), //
-	ORANGE_JUICE("O:", 0.6f), //
-	EXTRA_HOT_COFFEE("Ch:", 0.6f), //
-	EXTRA_HOT_CHOCOLATE("Hh:", 0.5f), //
-	EXTRA_HOT_TEA("Th:", 0.4f);
+	TEA("T:", new BigDecimal("0.4")), //
+	CHOCOLATE("H:", new BigDecimal("0.5")), //
+	COFFEE("C:", new BigDecimal("0.6")), //
+	ORANGE_JUICE("O:", new BigDecimal("0.6")), //
+	EXTRA_HOT_COFFEE("Ch:", new BigDecimal("0.6")), //
+	EXTRA_HOT_CHOCOLATE("Hh:", new BigDecimal("0.5")), //
+	EXTRA_HOT_TEA("Th:", new BigDecimal("0.4"));
 
 	private String code;
-	private float price;
+	private BigDecimal price;
 
-	private DrinkType(String code, float price) {
+	private DrinkType(String code, BigDecimal price) {
 		this.code = code;
 		this.price = price;
 	}
@@ -22,7 +24,7 @@ public enum DrinkType {
 		return code;
 	}
 
-	public float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 }

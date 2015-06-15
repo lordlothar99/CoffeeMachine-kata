@@ -8,23 +8,26 @@ public class CoffeeMachineController {
 		this.drinkMaker = drinkMaker;
 	}
 
-	public void displayMessage(String message) {
-		drinkMaker.sendCommand("M:" + message);
-	}
-
 	public void orderDrink(DrinkOrder drinkOrder) {
-		float missingAmount = getMissingAmount(drinkOrder);
+		float missingAmount = calculateMissingAmount(drinkOrder);
 		if (missingAmount > 0) {
 			this.displayMessage("Unsufficient funds : " + missingAmount + "€ missing");
 		} else {
-			StringBuilder command = new StringBuilder();
-			command.append(drinkOrder.getType().getCode());
-			command.append(drinkOrder.getSugar().getCode());
+			String command = drinkOrder.getType().getCode();
+			command += getSugar(drinkOrder);
 			drinkMaker.sendCommand(command.toString());
 		}
 	}
 
-	private float getMissingAmount(DrinkOrder drinkOrder) {
-		return drinkOrder.getType().getPrice() - drinkOrder.getCashAmount();
+	private String getSugar(DrinkOrder drinkOrder) {
+		return drinkOrder.getSugarQuantity() == 0 ? ":" : drinkOrder.getSugarQuantity() + ":0";
+	}
+
+	private float calculateMissingAmount(DrinkOrder drinkOrder) {
+		return drinkOrder.getType().getPrice().add(drinkOrder.getCashAmount().negate()).floatValue();
+	}
+
+	public void displayMessage(String message) {
+		drinkMaker.sendCommand("M:" + message);
 	}
 }
