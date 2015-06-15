@@ -8,9 +8,9 @@ public enum DrinkType {
 	CHOCOLATE("H:", new BigDecimal("0.5")), //
 	COFFEE("C:", new BigDecimal("0.6")), //
 	ORANGE_JUICE("O:", new BigDecimal("0.6")), //
-	EXTRA_HOT_COFFEE("Ch:", new BigDecimal("0.6")), //
-	EXTRA_HOT_CHOCOLATE("Hh:", new BigDecimal("0.5")), //
-	EXTRA_HOT_TEA("Th:", new BigDecimal("0.4"));
+	HOT_COFFEE("Ch:", new BigDecimal("0.6")), //
+	HOT_CHOCOLATE("Hh:", new BigDecimal("0.5")), //
+	HOT_TEA("Th:", new BigDecimal("0.4"));
 
 	private String code;
 	private BigDecimal price;

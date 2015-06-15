@@ -12,7 +12,7 @@ import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class OrderASimpleDrinkStepdefs {
+public class OrderADrinkStepdefs {
 
 	private CoffeeMachineController coffeeMachineController;
 	private DrinkMaker drinkMaker;
@@ -25,11 +25,15 @@ public class OrderASimpleDrinkStepdefs {
 
 	@When("^a (.*) with (\\d+) sugar and (\\d+.\\d+) euros is ordered$")
 	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String cashAmount) {
-		DrinkOrder order = newOrder().of(valueOf(drinkType.toUpperCase()))//
+		DrinkOrder order = newOrder().of(getDrinkType(drinkType))//
 				.withSugarQuantity(sugarQuantity)//
 				.withCashAmount(new BigDecimal(cashAmount))//
 				.asOrder();
 		coffeeMachineController.orderDrink(order);
+	}
+
+	private DrinkType getDrinkType(String drinkType) {
+		return valueOf(drinkType.replace(' ', '_').toUpperCase());
 	}
 
 	@When("^I want to display '(.+)' on the interface$")

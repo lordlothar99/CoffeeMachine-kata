@@ -4,9 +4,9 @@ import static com.coffeemachine.DrinkOrderBuilder.newMessage;
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.CHOCOLATE;
 import static com.coffeemachine.DrinkType.COFFEE;
-import static com.coffeemachine.DrinkType.EXTRA_HOT_CHOCOLATE;
-import static com.coffeemachine.DrinkType.EXTRA_HOT_COFFEE;
-import static com.coffeemachine.DrinkType.EXTRA_HOT_TEA;
+import static com.coffeemachine.DrinkType.HOT_CHOCOLATE;
+import static com.coffeemachine.DrinkType.HOT_COFFEE;
+import static com.coffeemachine.DrinkType.HOT_TEA;
 import static com.coffeemachine.DrinkType.ORANGE_JUICE;
 import static com.coffeemachine.DrinkType.TEA;
 import static org.mockito.Mockito.verify;
@@ -56,9 +56,9 @@ public class CoffeeMachineControllerTest {
 						{ newOrder().of(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
 						{ newOrder().of(COFFEE).withCashAmount("0.6").asOrder(), "C::" },
 						{ newOrder().of(ORANGE_JUICE).withCashAmount("0.6").asOrder(), "O::" },
-						{ newOrder().of(EXTRA_HOT_COFFEE).withCashAmount("0.6").asOrder(), "Ch::" },
-						{ newOrder().of(EXTRA_HOT_TEA).withOneSugar().withCashAmount("0.4").asOrder(), "Th:1:0" },
-						{ newOrder().of(EXTRA_HOT_CHOCOLATE).withTwoSugars().withCashAmount("0.5").asOrder(), "Hh:2:0" },
+						{ newOrder().of(HOT_COFFEE).withCashAmount("0.6").asOrder(), "Ch::" },
+						{ newOrder().of(HOT_TEA).withOneSugar().withCashAmount("0.4").asOrder(), "Th:1:0" },
+						{ newOrder().of(HOT_CHOCOLATE).withTwoSugars().withCashAmount("0.5").asOrder(), "Hh:2:0" },
 				//
 				});
 	}
