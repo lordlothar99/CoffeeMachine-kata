@@ -1,21 +1,16 @@
 package com.coffeemachine.cucumber;
 
-import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.valueOf;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.when;
 
-import org.junit.Assert;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
-
-import com.coffeemachine.CoffeeMachineController;
-import com.coffeemachine.DrinkMaker;
-import com.coffeemachine.DrinkOrder;
 import com.coffeemachine.DrinkType;
-import com.coffeemachine.ReportManager;
-import com.coffeemachine.ReportManagerImpl;
+import com.coffeemachine.report.ReportManager;
+import com.coffeemachine.report.ReportManagerImpl;
+import com.coffeemachine.store.DrinksSellings;
+import com.coffeemachine.store.DrinksSellingsDao;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -24,45 +19,38 @@ import cucumber.api.java.en.When;
 
 public class PrintAReportStepdefs {
 
-	private CoffeeMachineController coffeeMachineController;
 	private ReportManager reportManager;
 	private String report;
+	private DrinksSellings drinksSellings;
 
 	@Before
 	public void init() {
-		reportManager = spy(new ReportManagerImpl());
-		when(reportManager.generateReport()).then(new Answer<String>() {
-			@Override
-			public String answer(InvocationOnMock invocation) throws Throwable {
-				report = (String) invocation.callRealMethod();
-				return report;
-			}
-		});
-		coffeeMachineController = new CoffeeMachineController(mock(DrinkMaker.class), reportManager);
+		DrinksSellingsDao drinksSellingsDao = mock(DrinksSellingsDao.class);
+		reportManager = new ReportManagerImpl(drinksSellingsDao);
+		drinksSellings = new DrinksSellings();
+		when(drinksSellingsDao.getDrinksSellings()).thenReturn(drinksSellings);
 	}
 
-	@Given("^(\\d+) drinks of (.*) have been sold$")
+	@Given("^(\\d+) (.*) have been sold$")
 	public void drinks_of_tea_have_been_sold(int soldCount, String drinkType) throws Throwable {
-		DrinkType _drinkType = getDrinkType(drinkType);
-		DrinkOrder order = newOrder().of(_drinkType)//
-				.withCashAmount(_drinkType.getPrice())//
-				.asOrder();
-		for (int i = 0; i < soldCount; i++) {
-			coffeeMachineController.orderDrink(order);
-		}
+		drinksSellings.add(getDrinkType(drinkType), soldCount);
 	}
 
 	private DrinkType getDrinkType(String drinkType) {
+		if ('s' == drinkType.charAt(drinkType.length() - 1)) {
+			drinkType = drinkType.substring(0, drinkType.length() - 1);
+		}
 		return valueOf(drinkType.replace(' ', '_').toUpperCase());
 	}
 
 	@When("^I generate a report$")
 	public void I_generate_a_report() throws Throwable {
-		coffeeMachineController.printReport();
+		report = reportManager.generateReport();
 	}
 
 	@Then("^The report must contain '(.*)'$")
 	public void The_report_must_contain(String contents) throws Throwable {
-		Assert.assertTrue(report.contains(contents));
+		assertNotNull("Null report", report);
+		assertTrue("Missing content '" + contents + "' in report : " + report, report.contains(contents));
 	}
 }

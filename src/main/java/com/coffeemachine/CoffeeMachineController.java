@@ -1,13 +1,15 @@
 package com.coffeemachine;
 
+import com.coffeemachine.store.DrinksSellingsDao;
+
 public class CoffeeMachineController {
 
 	private final DrinkMaker drinkMaker;
-	private final ReportManager reportManager;
+	private final DrinksSellingsDao drinksSellingsDao;
 
-	public CoffeeMachineController(DrinkMaker drinkMaker, ReportManager reportManager) {
+	public CoffeeMachineController(DrinkMaker drinkMaker, DrinksSellingsDao drinksSellingsDao) {
 		this.drinkMaker = drinkMaker;
-		this.reportManager = reportManager;
+		this.drinksSellingsDao = drinksSellingsDao;
 	}
 
 	public void orderDrink(DrinkOrder drinkOrder) {
@@ -18,7 +20,7 @@ public class CoffeeMachineController {
 			String command = drinkOrder.getType().getCode();
 			command += getSugar(drinkOrder);
 			drinkMaker.sendCommand(command.toString());
-			reportManager.soldDrink(drinkOrder.getType());
+			drinksSellingsDao.addDrinkSelling(drinkOrder.getType());
 		}
 	}
 
@@ -32,10 +34,5 @@ public class CoffeeMachineController {
 
 	public void displayMessage(String message) {
 		drinkMaker.sendCommand("M:" + message);
-	}
-
-	public void printReport() {
-		String report = reportManager.generateReport();
-		System.out.println(report);
 	}
 }

@@ -1,8 +1,6 @@
-package com.coffeemachine;
+package com.coffeemachine.report;
 
 public interface ReportManager {
-
-	void soldDrink(DrinkType type);
 
 	String generateReport();
 

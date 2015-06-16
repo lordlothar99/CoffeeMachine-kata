@@ -2,17 +2,16 @@ package com.coffeemachine.cucumber;
 
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.valueOf;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 import java.math.BigDecimal;
-
-import org.mockito.Mockito;
 
 import com.coffeemachine.CoffeeMachineController;
 import com.coffeemachine.DrinkMaker;
 import com.coffeemachine.DrinkOrder;
 import com.coffeemachine.DrinkType;
-import com.coffeemachine.ReportManagerImpl;
+import com.coffeemachine.store.DrinksSellingsDao;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;
@@ -25,8 +24,8 @@ public class OrderADrinkStepdefs {
 
 	@Before
 	public void init() {
-		drinkMaker = Mockito.mock(DrinkMaker.class);
-		coffeeMachineController = new CoffeeMachineController(drinkMaker, new ReportManagerImpl());
+		drinkMaker = mock(DrinkMaker.class);
+		coffeeMachineController = new CoffeeMachineController(drinkMaker, mock(DrinksSellingsDao.class));
 	}
 
 	@When("^a (.*) with (\\d+) sugar and (\\d+.\\d+) euros is ordered$")
