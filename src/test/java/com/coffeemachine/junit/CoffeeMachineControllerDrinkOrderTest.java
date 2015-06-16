@@ -1,4 +1,4 @@
-package com.coffeemachine;
+package com.coffeemachine.junit;
 
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.CHOCOLATE;
@@ -18,6 +18,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
+
+import com.coffeemachine.DrinkOrder;
 
 @RunWith(Parameterized.class)
 public class CoffeeMachineControllerDrinkOrderTest extends AbstractCoffeeMachineTest {

@@ -1,7 +1,11 @@
-package com.coffeemachine;
+package com.coffeemachine.junit;
 
 import org.junit.Before;
 import org.mockito.Mockito;
+
+import com.coffeemachine.CoffeeMachineController;
+import com.coffeemachine.DrinkMaker;
+import com.coffeemachine.ReportManagerImpl;
 
 public abstract class AbstractCoffeeMachineTest {
 

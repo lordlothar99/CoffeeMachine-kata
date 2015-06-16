@@ -1,4 +1,4 @@
-package com.coffeemachine;
+package com.coffeemachine.junit;
 
 import static org.mockito.Mockito.verify;
 

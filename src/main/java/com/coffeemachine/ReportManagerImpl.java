@@ -21,30 +21,40 @@ public class ReportManagerImpl implements ReportManager {
 	public String generateReport() {
 		String report = "";
 		String sep = "";
-		BigDecimal earnedMoney = BigDecimal.ZERO;
 		for (Map.Entry<DrinkType, Integer> soldDrink : soldDrinks.entrySet()) {
-			Integer soldDrinkCount = soldDrink.getValue();
-			DrinkType drinkType = soldDrink.getKey();
-			report += sep;
-			report += soldDrinkCount;
-			report += " ";
-			report += drinkType.toString().toLowerCase();
-			if (soldDrinkCount > 1) {
-				report += "s";
-			}
-			report += " sold";
+			report += sep + getDrinkReport(soldDrink.getValue(), soldDrink.getKey());
 			sep = "\n";
-
-			earnedMoney = earnedMoney.add(earnedMoney(soldDrinkCount, drinkType));
 		}
 
 		report += sep;
-		report += "Total earned money: " + earnedMoney + " euros";
+		report += "Total earned money: " + computeTotalEarnedMoney() + " euros";
 
 		return report;
 	}
 
-	private BigDecimal earnedMoney(Integer soldDrinkCount, DrinkType drinkType) {
+	private String getDrinkReport(int soldDrinkCount, DrinkType drinkType) {
+		String drinkReport = soldDrinkCount + " ";
+		drinkReport += drinkType.toString().toLowerCase();
+		if (soldDrinkCount > 1) {
+			drinkReport += "s";
+		}
+		drinkReport += " sold";
+		return drinkReport;
+	}
+
+	private BigDecimal computeTotalEarnedMoney() {
+		BigDecimal earnedMoney = BigDecimal.ZERO;
+		for (Map.Entry<DrinkType, Integer> soldDrink : soldDrinks.entrySet()) {
+			Integer soldDrinkCount = soldDrink.getValue();
+			DrinkType drinkType = soldDrink.getKey();
+
+			earnedMoney = earnedMoney.add(computeEarnedMoney(soldDrinkCount, drinkType));
+		}
+
+		return earnedMoney;
+	}
+
+	private BigDecimal computeEarnedMoney(Integer soldDrinkCount, DrinkType drinkType) {
 		return drinkType.getPrice().multiply(new BigDecimal(soldDrinkCount));
 	}
 }

@@ -1,4 +1,4 @@
-package com.coffeemachine;
+package com.coffeemachine.cucumber;
 
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
 import static com.coffeemachine.DrinkType.valueOf;
@@ -7,6 +7,12 @@ import static org.mockito.Mockito.verify;
 import java.math.BigDecimal;
 
 import org.mockito.Mockito;
+
+import com.coffeemachine.CoffeeMachineController;
+import com.coffeemachine.DrinkMaker;
+import com.coffeemachine.DrinkOrder;
+import com.coffeemachine.DrinkType;
+import com.coffeemachine.ReportManagerImpl;
 
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Then;

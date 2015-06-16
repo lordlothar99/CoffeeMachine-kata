@@ -1,4 +1,4 @@
-package com.coffeemachine;
+package com.coffeemachine.cucumber;
 
 import org.junit.runner.RunWith;
 
