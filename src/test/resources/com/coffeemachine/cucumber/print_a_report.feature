@@ -7,12 +7,12 @@ Feature: Print a report
 		Given 2 chocolates have been sold
 		When I generate a report
 		Then The report must contain '2 chocolates sold'
-		And The report must contain 'Total earned money: 1.0 euros'
+		And The report must contain 'Total earned money: 1.0 euro'
 	
 	Scenario: Print a report with several drink types sold
 		Given 4 tea have been sold
 		And 1 chocolate have been sold
 		When I generate a report
-		Then The report must contain '4 teas sold'
-		And The report must contain '1 chocolate sold'
+		Then The report must contain '1 chocolate sold'
+		And The report must contain '4 teas sold'
 		And The report must contain 'Total earned money: 2.1 euros'
