@@ -3,8 +3,11 @@ Feature: Order a simple drink
 	As a coffee machine controller
 	I want to send a command
 	
+	Background: A coffee machine with a drink maker
+		Given a coffee machine with a drink maker
+	
 	Scenario Outline: Order of a simple drink
-		When a <drink> with <sugar> sugar and <cash amount> euros is ordered
+		When a <drink> with <sugar> sugars and <cash amount> euros is ordered
 		Then I should send '<command>' to the drink maker
 	Examples:
     	| drink			| sugar	| cash amount	| command									|

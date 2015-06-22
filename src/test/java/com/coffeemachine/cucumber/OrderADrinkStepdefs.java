@@ -13,7 +13,7 @@ import com.coffeemachine.DrinkOrder;
 import com.coffeemachine.DrinkType;
 import com.coffeemachine.store.DrinksSellingsDao;
 
-import cucumber.api.java.Before;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
@@ -22,13 +22,14 @@ public class OrderADrinkStepdefs {
 	private CoffeeMachineController coffeeMachineController;
 	private DrinkMaker drinkMaker;
 
-	@Before
-	public void init() {
+	@Given("^a coffee machine with a drink maker$")
+	public void a_coffee_machine_with_a_drink_maker() throws Throwable {
 		drinkMaker = mock(DrinkMaker.class);
 		coffeeMachineController = new CoffeeMachineController(drinkMaker, mock(DrinksSellingsDao.class));
+		System.out.println("there !");
 	}
 
-	@When("^a (.*) with (\\d+) sugar and (\\d+.\\d+) euros is ordered$")
+	@When("^a (.*) with (\\d+) sugars and (\\d+.\\d+) euros is ordered$")
 	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String cashAmount) {
 		DrinkOrder order = newOrder().of(getDrinkType(drinkType))//
 				.withSugarQuantity(sugarQuantity)//
