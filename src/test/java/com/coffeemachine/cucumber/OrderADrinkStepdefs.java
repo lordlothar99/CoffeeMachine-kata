@@ -26,7 +26,6 @@ public class OrderADrinkStepdefs {
 	public void a_coffee_machine_with_a_drink_maker() throws Throwable {
 		drinkMaker = mock(DrinkMaker.class);
 		coffeeMachineController = new CoffeeMachineController(drinkMaker, mock(DrinksSellingsDao.class));
-		System.out.println("there !");
 	}
 
 	@When("^a (.*) with (\\d+) sugars and (\\d+.\\d+) euros is ordered$")
