@@ -33,12 +33,12 @@ public class DrinkOrderBuilder {
 		return withSugarQuantity(2);
 	}
 
-	public DrinkOrderBuilder withCashAmount(String cashAmount) {
-		return withCashAmount(new BigDecimal(cashAmount));
+	public DrinkOrderBuilder withMoney(String money) {
+		return withMoney(new BigDecimal(money));
 	}
 
-	public DrinkOrderBuilder withCashAmount(BigDecimal cashAmount) {
-		this.drinkOrder.setCashAmount(cashAmount);
+	public DrinkOrderBuilder withMoney(BigDecimal money) {
+		this.drinkOrder.setMoney(money);
 		return this;
 	}
 

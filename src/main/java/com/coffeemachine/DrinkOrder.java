@@ -10,14 +10,14 @@ public class DrinkOrder {
 
 	private DrinkType type;
 	private int sugarQuantity;
-	private BigDecimal cashAmount = BigDecimal.ZERO;
+	private BigDecimal money = BigDecimal.ZERO;
 
-	public void setCashAmount(BigDecimal cashAmount) {
-		this.cashAmount = cashAmount;
+	public void setMoney(BigDecimal money) {
+		this.money = money;
 	}
 
-	public BigDecimal getCashAmount() {
-		return cashAmount;
+	public BigDecimal getMoney() {
+		return money;
 	}
 
 	public void setType(DrinkType type) {
@@ -41,7 +41,7 @@ public class DrinkOrder {
 		ToStringBuilder builder = new ToStringBuilder(this, SHORT_PREFIX_STYLE);
 		builder.append("type", type);
 		builder.append("sugarQuantity", sugarQuantity);
-		builder.append("cashAmount", cashAmount);
+		builder.append("money", money);
 		return builder.toString();
 	}
 }

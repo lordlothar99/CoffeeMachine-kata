@@ -33,10 +33,10 @@ public class OrderADrinkStepdefs {
 	}
 
 	@When("^a (.*) with (\\d+) sugars? and (\\d+.\\d+) euros is ordered$")
-	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String cashAmount) {
+	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String money) {
 		DrinkOrder order = newOrder().ofDrink(drinkType)//
 				.withSugarQuantity(sugarQuantity)//
-				.withCashAmount(cashAmount)//
+				.withMoney(money)//
 				.asOrder();
 		coffeeMachineController.orderDrink(order);
 	}
