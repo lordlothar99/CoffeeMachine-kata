@@ -1,15 +1,22 @@
 package com.coffeemachine;
 
+import com.coffeemachine.check.BeverageQuantityChecker;
+import com.coffeemachine.email.EmailNotifier;
 import com.coffeemachine.store.DrinksSellingsDao;
 
 public class CoffeeMachineController {
 
 	private final DrinkMaker drinkMaker;
 	private final DrinksSellingsDao drinksSellingsDao;
+	private final EmailNotifier emailNotifier;
+	private final BeverageQuantityChecker beverageQuantityChecker;
 
-	public CoffeeMachineController(DrinkMaker drinkMaker, DrinksSellingsDao drinksSellingsDao) {
+	public CoffeeMachineController(DrinkMaker drinkMaker, DrinksSellingsDao drinksSellingsDao,
+			EmailNotifier emailNotifier, BeverageQuantityChecker beverageQuantityChecker) {
 		this.drinkMaker = drinkMaker;
 		this.drinksSellingsDao = drinksSellingsDao;
+		this.emailNotifier = emailNotifier;
+		this.beverageQuantityChecker = beverageQuantityChecker;
 	}
 
 	public void orderDrink(DrinkOrder drinkOrder) {
