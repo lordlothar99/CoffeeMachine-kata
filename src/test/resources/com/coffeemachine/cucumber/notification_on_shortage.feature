@@ -8,4 +8,4 @@ Feature: Send an email notification when a shortage is detected
 		When there is no more coffee
 		And a coffee with 0 sugar and 0.6 euros is ordered
 		Then I should send an email notification for "coffee"
-		And I should send 'M:A shortage has been detected. A notification has been sent.' to the drink maker
+		And I should send 'M:A shortage of coffee has been detected. A notification has been sent.' to the drink maker
