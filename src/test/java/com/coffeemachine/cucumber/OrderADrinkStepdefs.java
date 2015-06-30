@@ -1,16 +1,12 @@
 package com.coffeemachine.cucumber;
 
 import static com.coffeemachine.DrinkOrderBuilder.newOrder;
-import static com.coffeemachine.DrinkType.valueOf;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-
-import java.math.BigDecimal;
 
 import com.coffeemachine.CoffeeMachineController;
 import com.coffeemachine.DrinkMaker;
 import com.coffeemachine.DrinkOrder;
-import com.coffeemachine.DrinkType;
 import com.coffeemachine.store.DrinksSellingsDao;
 
 import cucumber.api.java.en.Given;
@@ -30,16 +26,13 @@ public class OrderADrinkStepdefs {
 
 	@When("^a (.*) with (\\d+) sugars and (\\d+.\\d+) euros is ordered$")
 	public void a_drink_is_ordered(String drinkType, int sugarQuantity, String cashAmount) {
-		DrinkOrder order = newOrder().of(getDrinkType(drinkType))//
+		DrinkOrder order = newOrder().ofDrink(drinkType)//
 				.withSugarQuantity(sugarQuantity)//
-				.withCashAmount(new BigDecimal(cashAmount))//
+				.withCashAmount(cashAmount)//
 				.asOrder();
 		coffeeMachineController.orderDrink(order);
 	}
 
-	private DrinkType getDrinkType(String drinkType) {
-		return valueOf(drinkType.replace(' ', '_').toUpperCase());
-	}
 
 	@When("^I want to display '(.+)' on the interface$")
 	public void I_want_to_display_a_message_on_the_interface(String message) throws Throwable {

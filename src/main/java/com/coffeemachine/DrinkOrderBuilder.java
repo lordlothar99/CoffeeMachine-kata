@@ -1,5 +1,7 @@
 package com.coffeemachine;
 
+import static com.coffeemachine.DrinkType.valueOf;
+
 import java.math.BigDecimal;
 
 public class DrinkOrderBuilder {
@@ -14,9 +16,13 @@ public class DrinkOrderBuilder {
 		return new DrinkOrderBuilder();
 	}
 
-	public DrinkOrderBuilder of(DrinkType drinkType) {
+	public DrinkOrderBuilder ofDrink(DrinkType drinkType) {
 		this.drinkOrder.setType(drinkType);
 		return this;
+	}
+
+	public DrinkOrderBuilder ofDrink(String drinkType) {
+		return ofDrink(valueOf(drinkType.replace(' ', '_').toUpperCase()));
 	}
 
 	public DrinkOrderBuilder withOneSugar() {

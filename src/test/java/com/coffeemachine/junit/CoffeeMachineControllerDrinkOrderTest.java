@@ -33,22 +33,22 @@ public class CoffeeMachineControllerDrinkOrderTest extends AbstractCoffeeMachine
 	public static Collection<Object[]> getExpectedMessagesForOrders() {
 		return Arrays
 				.asList(new Object[][] {
-						{ newOrder().of(TEA).withOneSugar().withCashAmount("0.4").asOrder(), "T:1:0" },
-						{ newOrder().of(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
-						{ newOrder().of(COFFEE).withTwoSugars().withCashAmount("0.6").asOrder(), "C:2:0" },
-						{ newOrder().of(TEA).withOneSugar().withCashAmount("0.3").asOrder(),
+						{ newOrder().ofDrink(TEA).withOneSugar().withCashAmount("0.4").asOrder(), "T:1:0" },
+						{ newOrder().ofDrink(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
+						{ newOrder().ofDrink(COFFEE).withTwoSugars().withCashAmount("0.6").asOrder(), "C:2:0" },
+						{ newOrder().ofDrink(TEA).withOneSugar().withCashAmount("0.3").asOrder(),
 								"M:Unsufficient funds : 0.1 euros missing" },
-						{ newOrder().of(CHOCOLATE).withOneSugar().asOrder(), "M:Unsufficient funds : 0.5 euros missing" },
-						{ newOrder().of(COFFEE).withOneSugar().asOrder(), "M:Unsufficient funds : 0.6 euros missing" },
-						{ newOrder().of(COFFEE).withCashAmount("0.3").withOneSugar().asOrder(),
+						{ newOrder().ofDrink(CHOCOLATE).withOneSugar().asOrder(), "M:Unsufficient funds : 0.5 euros missing" },
+						{ newOrder().ofDrink(COFFEE).withOneSugar().asOrder(), "M:Unsufficient funds : 0.6 euros missing" },
+						{ newOrder().ofDrink(COFFEE).withCashAmount("0.3").withOneSugar().asOrder(),
 								"M:Unsufficient funds : 0.3 euros missing" },
-						{ newOrder().of(TEA).withCashAmount("0.4").asOrder(), "T::" },
-						{ newOrder().of(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
-						{ newOrder().of(COFFEE).withCashAmount("0.6").asOrder(), "C::" },
-						{ newOrder().of(ORANGE_JUICE).withCashAmount("0.6").asOrder(), "O::" },
-						{ newOrder().of(HOT_COFFEE).withCashAmount("0.6").asOrder(), "Ch::" },
-						{ newOrder().of(HOT_TEA).withOneSugar().withCashAmount("0.4").asOrder(), "Th:1:0" },
-						{ newOrder().of(HOT_CHOCOLATE).withTwoSugars().withCashAmount("0.5").asOrder(), "Hh:2:0" },
+						{ newOrder().ofDrink(TEA).withCashAmount("0.4").asOrder(), "T::" },
+						{ newOrder().ofDrink(CHOCOLATE).withCashAmount("0.5").asOrder(), "H::" },
+						{ newOrder().ofDrink(COFFEE).withCashAmount("0.6").asOrder(), "C::" },
+						{ newOrder().ofDrink(ORANGE_JUICE).withCashAmount("0.6").asOrder(), "O::" },
+						{ newOrder().ofDrink(HOT_COFFEE).withCashAmount("0.6").asOrder(), "Ch::" },
+						{ newOrder().ofDrink(HOT_TEA).withOneSugar().withCashAmount("0.4").asOrder(), "Th:1:0" },
+						{ newOrder().ofDrink(HOT_CHOCOLATE).withTwoSugars().withCashAmount("0.5").asOrder(), "Hh:2:0" },
 				//
 				});
 	}
