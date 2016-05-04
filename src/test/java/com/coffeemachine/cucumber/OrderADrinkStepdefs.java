@@ -24,7 +24,7 @@ public class OrderADrinkStepdefs {
 	private BeverageQuantityChecker beverageQuantityChecker;
 
 	@Given("^a coffee machine with a drink maker$")
-	public void a_coffee_machine_with_a_drink_maker() throws Throwable {
+	public void a_coffee_machine_with_a_drink_maker() {
 		drinkMaker = mock(DrinkMaker.class);
 		emailNotifier = mock(EmailNotifier.class);
 		beverageQuantityChecker = mock(BeverageQuantityChecker.class);
@@ -42,22 +42,22 @@ public class OrderADrinkStepdefs {
 	}
 
 	@When("^I want to display '(.+)' on the interface$")
-	public void I_want_to_display_a_message_on_the_interface(String message) throws Throwable {
+	public void I_want_to_display_a_message_on_the_interface(String message) {
 		coffeeMachineController.displayMessage(message);
 	}
 
 	@When("^there is no more ([^\"]*)$")
-	public void there_is_no_more_(String drinkType) throws Throwable {
+	public void there_is_no_more_(String drinkType) {
 		when(beverageQuantityChecker.isEmpty(drinkType)).thenReturn(true);
 	}
 
 	@Then("^I should send an email notification for \"([^\"]*)\"$")
-	public void I_should_send_an_email_notification_for(String drinkType) throws Throwable {
+	public void I_should_send_an_email_notification_for(String drinkType) {
 		verify(emailNotifier).notifyMissingDrink(drinkType);
 	}
 
 	@Then("^I should send '(.+)' to the drink maker$")
-	public void i_should_send_the_expected_command(String command) throws Throwable {
+	public void i_should_send_the_expected_command(String command) {
 		verify(drinkMaker).sendCommand(command);
 	}
 }

@@ -32,7 +32,7 @@ public class PrintAReportStepdefs {
 	}
 
 	@Given("^(\\d+) (.*) have been sold$")
-	public void drinks_of_tea_have_been_sold(int soldCount, String drinkType) throws Throwable {
+	public void drinks_of_tea_have_been_sold(int soldCount, String drinkType) {
 		drinksSellings.add(getDrinkType(drinkType), soldCount);
 	}
 
@@ -44,12 +44,12 @@ public class PrintAReportStepdefs {
 	}
 
 	@When("^I generate a report$")
-	public void I_generate_a_report() throws Throwable {
+	public void I_generate_a_report() {
 		report = reportManager.generateReport();
 	}
 
 	@Then("^The report must contain '(.*)'$")
-	public void The_report_must_contain(String contents) throws Throwable {
+	public void The_report_must_contain(String contents) {
 		assertNotNull("Null report", report);
 		assertTrue("Missing content '" + contents + "' in report : " + report, report.contains(contents));
 	}
