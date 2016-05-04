@@ -2,7 +2,7 @@ package com.coffeemachine.junit;
 
 import static com.coffeemachine.DrinkType.CHOCOLATE;
 import static com.coffeemachine.DrinkType.TEA;
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class ReportManagerTest extends AbstractCoffeeMachineTest {
 
 		String report = reportManager.generateReport();
 
-		assertEquals("1 chocolate sold\nTotal earned money: 0.5 euro", report);
+		assertThat(report).isEqualTo("1 chocolate sold\nTotal earned money: 0.5 euro");
 	}
 
 	@Test
@@ -30,7 +30,7 @@ public class ReportManagerTest extends AbstractCoffeeMachineTest {
 
 		String report = reportManager.generateReport();
 
-		assertEquals("2 chocolates sold\nTotal earned money: 1.0 euro", report);
+		assertThat(report).isEqualTo("2 chocolates sold\nTotal earned money: 1.0 euro");
 	}
 
 	@Test
@@ -42,6 +42,6 @@ public class ReportManagerTest extends AbstractCoffeeMachineTest {
 
 		String report = reportManager.generateReport();
 
-		assertEquals("1 chocolate sold\n4 teas sold\nTotal earned money: 2.1 euros", report);
+		assertThat(report).isEqualTo("1 chocolate sold\n4 teas sold\nTotal earned money: 2.1 euros");
 	}
 }
