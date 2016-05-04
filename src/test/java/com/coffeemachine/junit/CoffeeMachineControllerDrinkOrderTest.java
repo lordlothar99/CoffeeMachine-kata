@@ -50,14 +50,14 @@ public class CoffeeMachineControllerDrinkOrderTest extends AbstractCoffeeMachine
 		);
 	}
 
-	private static Expectation expect(String expectedCommand) {
-		return new Expectation(expectedCommand);
-	}
-
 	@Test
 	public void should_send_command_when_received_order() {
 		coffeeMachineController.orderDrink(this.order);
 		verify(drinkMaker).sendCommand(expectedCommand);
+	}
+
+	private static Expectation expect(String expectedCommand) {
+		return new Expectation(expectedCommand);
 	}
 
 	private static class Expectation {
